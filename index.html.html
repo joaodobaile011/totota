@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imagens/coracao.webp" type="image/x-icon" />
+    <title>Para Minha Totota</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+        :root {
+            --primary-color: #ff3366;
+            --secondary-color: #ff6b8b;
+            --text-color: #ff4d6d;
+            --bg-color: #000000;
+            --accent-color: #ff91a4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+            margin-top: 2%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+            animation: pulse 3s infinite alternate;
+        }
+
+        .message {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(255, 51, 102, 0.2);
+            border: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+        }
+
+        .message::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(255, 51, 102, 0.1), transparent);
+            z-index: -1;
+            animation: shimmer 3s infinite linear;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #ff0040;
+            font-weight: 700;
+            font-size: 1.3em;
+            text-shadow: 0 0 5px rgba(255, 0, 64, 0.5);
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+            display: block;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        .love-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .love-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-100%, -100%);
+            transition: all 0.5s ease;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .love-button:hover::before {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        .love-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3366'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: float-up var(--duration) ease-in-out forwards;
+        }
+
+        /* Carrossel de Fotos */
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+            height: 60vh;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(255, 51, 102, 0.7);
+        }
+
+        .carousel-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+            padding: 20px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            color: var(--accent-color);
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        /* Explosão de corações */
+        .heart-explosion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .explosion-heart {
+            position: absolute;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3366'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: explode var(--duration) ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--scale));
+                opacity: 0;
+            }
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(var(--rotate)) scale(var(--scale));
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+            }
+
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 51, 102, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -100% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Decoração adicional */
+        .corner-heart {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3366'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            transform: rotate(-30deg);
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+            transform: rotate(30deg);
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(-130deg);
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            transform: rotate(130deg);
+        }
+
+        /* Corrigindo o estilo do botão */
+        .special-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+            display: block;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+        .special-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        .special-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Estilo do modal */
+        .love-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .love-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .love-modal {
+            width: 90%;
+            max-width: 500px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(40, 0, 10, 0.9));
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.8);
+            border: 2px solid var(--primary-color);
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .love-modal-overlay.active .love-modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .love-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 70%, rgba(255, 51, 102, 0.2));
+            pointer-events: none;
+        }
+
+        .love-modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .love-modal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            animation: pulse 3s infinite alternate;
+        }
+
+        .love-modal-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .love-modal-close:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+
+        .love-modal-body {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .love-modal-message {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .love-modal-heart {
+            font-size: 3rem;
+            color: var(--primary-color);
+            animation: pulse 1.5s infinite alternate;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .love-modal-footer {
+            text-align: center;
+        }
+
+        .love-modal-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-modal-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        .love-modal-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .love-modal-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3366'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .decoration-1 {
+            top: 20px;
+            left: 20px;
+            transform: rotate(-20deg);
+        }
+
+        .decoration-2 {
+            top: 20px;
+            right: 20px;
+            transform: rotate(20deg);
+        }
+
+        .decoration-3 {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(-110deg);
+        }
+
+        .decoration-4 {
+            bottom: 20px;
+            right: 20px;
+            transform: rotate(110deg);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .message {
+                padding: 20px;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+
+            .special-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .carousel-container {
+                height: 50vh;
+            }
+
+            .signature {
+                font-size: 1.5rem;
+                padding-right: 20px;
+            }
+
+            .corner-heart {
+                width: 60px;
+                height: 60px;
+            }
+
+            .carousel-caption {
+                font-size: 1.2rem;
+                padding: 10px;
+            }
+
+            .love-modal-title {
+                font-size: 2rem;
+            }
+
+            .love-modal-message {
+                font-size: 1.2rem;
+            }
+
+            .love-modal {
+                padding: 20px;
+            }
+
+            .love-modal-heart {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .message p {
+                font-size: 0.9rem;
+            }
+
+            .carousel-container {
+                height: 40vh;
+            }
+
+            .carousel-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .carousel-caption {
+                font-size: 1rem;
+                padding: 8px;
+            }
+
+            .love-modal-title {
+                font-size: 1.8rem;
+            }
+
+            .love-modal-message {
+                font-size: 1rem;
+            }
+
+            .love-modal-button {
+                padding: 10px 25px;
+                font-size: 1.5rem;
+            }
+
+            .love-modal-decoration {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-hearts" id="bg-hearts"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
+    <div id="heart-explosion" class="heart-explosion"></div>
+
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Para Minha Totota</h1>
+            </div>
+        </div>
+
+        <div class="message">
+            <p>Oiii meuuu amoiii, queria te dedicar esse site que fiz especialmente para você, para mostrar o quanto
+                nosso
+                amor é importante para mim. <strong>Euu Tee Amoooo</strong> em todos os momentos, mesmo quando estamos
+                brigados ou algo do tipo. Você é tudo que eu mais pedi para Deus: uma mulher companheira que sempre
+                apoia
+                minhas loucuras e ideias.</p>
+            <p>Só tenho a te agradecer. Desde quando você chegou na minha vida, você tem sido minha luz no fim do túnel.
+                Em
+                todos os momentos você sempre me ajuda e me dá os melhores conselhos possíveis.</p>
+            <p>Você é uma mulher de luz. Vou fazer o impossível para sempre te ver feliz e sorrindo. Amo todos os nossos
+                momentos de risadas, brincadeiras, brigas e esquisitices. Todos esses momentos nos completam.</p>
+            <p>E a cada dia que passa sou grato por estar ao seu lado, desfrutando sempre do nosso amor. <strong>Euu
+                    Teee
+                    Amoooo Muitoooo TOTOTAAA!!!</strong></p>
+            <p>Espero que você goste desse site que fiz para você.</p>
+            <p>ASS: passonado</p>
+        </div>
+        <!-- Carrossel de fotos -->
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <!-- Aqui ficarão as imagens do carrossel (inseridas via JavaScript) -->
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+            </button>
+
+            <button class="carousel-btn next" id="nextBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+            </button>
+
+            <div class="carousel-nav" id="carouselNav">
+                <!-- Pontos de navegação (inseridos via JavaScript) -->
+            </div>
+        </div>
+
+        <div class="special-container">
+            <button class="special-button" id="loveButton">
+                <span style="font-size: 130%;">Clique aqui se você me ama</span>
+            </button>
+        </div>
+
+
+        <div class="signature">
+            Com todo meu amor...
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="love-modal-overlay" id="loveModal">
+        <div class="love-modal">
+            <div class="love-modal-decoration decoration-1"></div>
+            <div class="love-modal-decoration decoration-2"></div>
+            <div class="love-modal-decoration decoration-3"></div>
+            <div class="love-modal-decoration decoration-4"></div>
+
+            <div class="love-modal-header">
+                <h2 class="love-modal-title">Meu Amor!</h2>
+                <button class="love-modal-close" id="closeModal">×</button>
+            </div>
+
+            <div class="love-modal-body">
+                <p class="love-modal-message">Você é o amor da minha vida!</p>
+                <div class="love-modal-heart">❤️</div>
+                <p class="love-modal-message">Para sempre minha Totota.</p>
+            </div>
+
+            <div class="love-modal-footer">
+                <button class="love-modal-button" id="modalButton">Eu também te amo!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = new Audio();
+        // Substitua com sua música:
+        audio.src = "./música/amor.mp3";
+        audio.loop = true;
+
+        const images = [
+            { src: "./imagens/1.jpg", caption: "Meu poema favorito: Você" },
+            { src: "./imagens/2.jpg", caption: "Momentos inesquecíveis" },
+            { src: "./imagens/3.jpg", caption: "Com você, tudo é melhor" },
+            { src: "./imagens/4.jpg", caption: "Meu amor por você é infinito" },
+            { src: "./imagens/5.jpg", caption: "Você é minha pessoa favorita" },
+            { src: "./imagens/6.jpg", caption: "Juntos somos mais fortes" },
+            { src: "./imagens/7.jpg", caption: "Para sempre minha Totota" }
+        ];
+
+        function createFloatingHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+
+            const size = Math.random() * 30 + 10;
+            const left = Math.random() * window.innerWidth;
+            const duration = Math.random() * 5 + 5;
+            const rotate = Math.random() * 360 - 180;
+            const scale = Math.random() * 0.5 + 0.5;
+
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.left = `${left}px`;
+            heart.style.setProperty('--duration', `${duration}s`);
+            heart.style.setProperty('--duration', `${duration}s`);
+            heart.style.setProperty('--rotate', `${rotate}deg`);
+            heart.style.setProperty('--scale', scale);
+
+            document.getElementById('floating-hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+
+        function createBackgroundHearts() {
+            const bgHearts = document.getElementById('bg-hearts');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                const size = Math.random() * 15 + 5;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.opacity = Math.random() * 0.3 + 0.1;
+                bgHearts.appendChild(heart);
+            }
+        }
+
+        function createHeartExplosion(x, y) {
+            const explosionContainer = document.getElementById('heart-explosion');
+            explosionContainer.innerHTML = ''; // Limpa explosões anteriores
+
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("explosion-heart");
+
+                const size = Math.random() * 30 + 10;
+                const tx = (Math.random() * 200 - 100);
+                const ty = (Math.random() * 200 - 100);
+                const rot = Math.random() * 360;
+                const scale = Math.random() * 0.7 + 0.3;
+                const duration = Math.random() * 1.5 + 0.5;
+
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                heart.style.setProperty('--tx', `${tx}px`);
+                heart.style.setProperty('--ty', `${ty}px`);
+                heart.style.setProperty('--rot', `${rot}deg`);
+                heart.style.setProperty('--scale', scale);
+                heart.style.setProperty('--duration', `${duration}s`);
+
+                explosionContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), duration * 1000);
+            }
+        }
+
+        function setupCarousel() {
+            const carousel = document.getElementById("carousel");
+            const carouselNav = document.getElementById("carouselNav");
+            let currentSlide = 0;
+
+            images.forEach((img, index) => {
+                const item = document.createElement("div");
+                item.classList.add("carousel-item");
+
+                const image = document.createElement("img");
+                image.src = img.src;
+                image.alt = img.caption;
+
+                const caption = document.createElement("div");
+                caption.classList.add("carousel-caption");
+                caption.textContent = img.caption;
+
+                item.appendChild(image);
+                item.appendChild(caption);
+                carousel.appendChild(item);
+
+                // Adiciona explosão de coração quando clica na imagem
+                item.addEventListener("click", (e) => {
+                    const rect = carousel.getBoundingClientRect();
+                    createHeartExplosion(e.clientX, e.clientY);
+                });
+
+                const dot = document.createElement("div");
+                dot.classList.add("carousel-dot");
+                if (index === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => {
+                    currentSlide = index;
+                    updateCarousel();
+                });
+                carouselNav.appendChild(dot);
+            });
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                const dots = carouselNav.querySelectorAll(".carousel-dot");
+                dots.forEach((dot, idx) => dot.classList.toggle("active", idx === currentSlide));
+            }
+
+            document.getElementById("prevBtn").addEventListener("click", () => {
+                currentSlide = (currentSlide - 1 + images.length) % images.length;
+                updateCarousel();
+            });
+
+            document.getElementById("nextBtn").addEventListener("click", () => {
+                currentSlide = (currentSlide + 1) % images.length;
+                updateCarousel();
+            });
+
+            // Rolagem automática a cada 5 segundos
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % images.length;
+                updateCarousel();
+            }, 5000);
+        }
+
+        // Modal functions
+        function openModal() {
+            const modal = document.getElementById("loveModal");
+            modal.classList.add("active");
+            audio.play(); // Toca a música quando o modal é aberto
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("loveModal");
+            modal.classList.remove("active");
+        }
+
+        document.getElementById("loveButton").addEventListener("click", e => {
+            const rect = e.target.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            createHeartExplosion(centerX, centerY);
+            openModal();
+        });
+
+        document.getElementById("closeModal").addEventListener("click", () => {
+            closeModal();
+        });
+
+        document.getElementById("modalButton").addEventListener("click", () => {
+            closeModal();
+            // Cria uma explosão extra de corações ao fechar com o botão
+            const rect = document.body.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            createHeartExplosion(centerX, centerY);
+        });
+
+        // Fecha o modal se clicar fora dele
+        document.getElementById("loveModal").addEventListener("click", (e) => {
+            if (e.target === document.getElementById("loveModal")) {
+                closeModal();
+            }
+        });
+
+        // Adiciona corações flutuantes a cada segundo
+        setInterval(createFloatingHeart, 1000);
+
+        // Cria os corações do fundo
+        createBackgroundHearts();
+
+        // Configura o carrossel
+        setupCarousel();
+    </script>
+</body>
+
+</html>
