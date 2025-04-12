@@ -753,6 +753,137 @@
                 height: 30px;
             }
         }
+
+    
+    .sound-wave-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    }
+
+ 
+    .with-waves {
+    position: relative;
+    border-image: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    border-image-slice: 1;
+    box-shadow: 0 0 15px rgba(255, 107, 139, 0.5);
+    transition: all 0.5s ease;
+    }
+
+    /* Pulsação no ritmo da música */
+    .music-pulse {
+    animation: musicPulse 2s ease-in-out infinite;
+    }
+
+    /* Notas musicais flutuantes */
+    .music-note {
+    position: absolute;
+    font-size: 20px;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    user-select: none;
+    pointer-events: none;
+    }
+
+    /* Tema musical para o corpo da página */
+    body.music-theme {
+    transition: all 1s ease;
+    background: linear-gradient(135deg, #300a15, #500a20);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s infinite linear;
+    }
+
+    body.music-theme .hero,
+    body.music-theme .message,
+    body.music-theme .carousel-container,
+    body.music-theme .special-button {
+    transition: all 0.8s ease;
+    }
+
+    body.music-theme h1 {
+    text-shadow: 0 0 15px rgba(255, 107, 139, 0.9);
+    }
+
+    /* Animações */
+    @keyframes waveAnimation {
+    0%, 100% {
+    transform: scaleY(0.5);
+    }
+    50% {
+    transform: scaleY(1);
+    }
+    }
+
+    @keyframes musicPulse {
+    0%, 100% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.02);
+    }
+    }
+
+    @keyframes floatNote {
+    0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+    }
+    10% {
+    opacity: 1;
+    }
+    90% {
+    opacity: 1;
+    }
+    100% {
+    opacity: 0;
+    transform: translateY(-100vh) rotate(360deg);
+    }
+    }
+
+    @keyframes gradientAnimation {
+    0% {
+    background-position: 0% 50%;
+    }
+    50% {
+    background-position: 100% 50%;
+    }
+    100% {
+    background-position: 0% 50%;
+    }
+    }
+
+    /* Responsividade para o tema musical */
+    @media (max-width: 768px) {
+    .sound-wave-container {
+    height: 20px;
+    gap: 2px;
+    }
+
+    .sound-wave {
+    width: 2px;
+    }
+
+    .music-note {
+    font-size: 16px;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .sound-wave-container {
+    height: 15px;
+    gap: 1px;
+    }
+
+    .sound-wave {
+    width: 1px;
+    }
+
+    .music-note {
+    font-size: 14px;
+    }
+    }
     </style>
 </head>
 
@@ -1038,7 +1169,147 @@
 
         // Configura o carrossel
         setupCarousel();
+        function activateMusicTheme() {
+            // Muda a cor de fundo e elementos para um vermelho mais claro
+            document.documentElement.style.setProperty('--primary-color', '#ff6b8b');
+            document.documentElement.style.setProperty('--secondary-color', '#ff91a4');
+            document.documentElement.style.setProperty('--text-color', '#ff4d8d');
+            document.documentElement.style.setProperty('--bg-color', '#300a15');
+            document.documentElement.style.setProperty('--accent-color', '#ffb3c1');
+
+            // Adiciona a classe para estilo musical à body
+            document.body.classList.add('music-theme');
+
+            // Adiciona ondas sonoras aos elementos principais
+            addSoundWavesToElements();
+
+            // Inicia a animação de pulso musical
+            startMusicPulse();
+        }
+
+        function addSoundWavesToElements() {
+            // Seleciona os elementos principais para adicionar as ondas sonoras
+            const elements = [
+                document.querySelector('.hero'),
+                document.querySelector('.message'),
+                document.querySelector('.carousel-container'),
+                document.querySelector('.special-button')
+            ];
+
+        }
+        function startMusicPulse() {
+            // Adiciona pulsação aos elementos principais
+            const pulseElements = document.querySelectorAll('.hero, .message, .carousel-container, .special-button, h1, .message p, .carousel-item img');
+
+            pulseElements.forEach(element => {
+                element.classList.add('music-pulse');
+            });
+
+            // Cria alguns elementos de notas musicais flutuantes
+            createMusicNotes();
+        }
+
+        function createMusicNotes() {
+            // Cria o contêiner para as notas musicais se não existir
+            let notesContainer = document.getElementById('music-notes');
+            if (!notesContainer) {
+                notesContainer = document.createElement('div');
+                notesContainer.id = 'music-notes';
+                document.body.appendChild(notesContainer);
+            }
+
+            // Símbolos musicais para usar
+            const musicSymbols = ['♪', '♫', '♬', '♩', '♭', '♮', '♯'];
+
+            // Cria 30 notas musicais flutuantes
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const note = document.createElement('div');
+                    note.className = 'music-note';
+                    note.textContent = musicSymbols[Math.floor(Math.random() * musicSymbols.length)];
+
+                    // Posição aleatória
+                    note.style.left = `${Math.random() * 100}vw`;
+                    note.style.top = `${Math.random() * 100}vh`;
+
+                    // Tamanho aleatório
+                    const size = Math.random() * 20 + 15;
+                    note.style.fontSize = `${size}px`;
+
+                    // Cor aleatória em tons de rosa/vermelho
+                    const hue = Math.random() * 20 + 345; // 345-365 (ou 0-5) para tons de vermelho/rosa
+                    note.style.color = `hsl(${hue}, 100%, 75%)`;
+
+                    // Adiciona a nota ao contêiner
+                    notesContainer.appendChild(note);
+
+                    // Inicia animação de flutuação
+                    let animationDuration = Math.random() * 8 + 5;
+                    note.style.animation = `floatNote ${animationDuration}s linear forwards`;
+
+                    // Remove a nota após a animação terminar
+                    setTimeout(() => {
+                        note.remove();
+                        // Cria uma nova nota para manter o número constante
+                        if (document.body.classList.contains('music-theme')) {
+                            createSingleNote();
+                        }
+                    }, animationDuration * 1000);
+                }, i * 200); // Atraso para criar notas em sequência
+            }
+        }
+
+        function createSingleNote() {
+            const notesContainer = document.getElementById('music-notes');
+            const musicSymbols = ['♪', '♫', '♬', '♩', '♭', '♮', '♯'];
+
+            const note = document.createElement('div');
+            note.className = 'music-note';
+            note.textContent = musicSymbols[Math.floor(Math.random() * musicSymbols.length)];
+
+            // Posição aleatória
+            note.style.left = `${Math.random() * 100}vw`;
+            note.style.bottom = '0';
+
+            // Tamanho aleatório
+            const size = Math.random() * 20 + 15;
+            note.style.fontSize = `${size}px`;
+
+            // Cor aleatória em tons de rosa/vermelho
+            const hue = Math.random() * 20 + 345;
+            note.style.color = `hsl(${hue}, 100%, 75%)`;
+
+            // Adiciona a nota ao contêiner
+            notesContainer.appendChild(note);
+
+            // Inicia animação de flutuação
+            let animationDuration = Math.random() * 8 + 5;
+            note.style.animation = `floatNote ${animationDuration}s linear forwards`;
+
+            // Remove a nota após a animação terminar
+            setTimeout(() => {
+                note.remove();
+                // Cria uma nova nota para manter o número constante
+                if (document.body.classList.contains('music-theme')) {
+                    createSingleNote();
+                }
+            }, animationDuration * 1000);
+        }
+
+        // Adiciona o listener para o botão no modal
+        document.getElementById("modalButton").addEventListener("click", () => {
+            closeModal();
+            // Cria uma explosão extra de corações ao fechar com o botão
+            const rect = document.body.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            createHeartExplosion(centerX, centerY);
+
+            // Ativa o tema musical
+            activateMusicTheme();
+        });
     </script>
+
 </body>
 
 </html>
