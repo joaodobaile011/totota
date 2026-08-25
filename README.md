@@ -8,9 +8,12 @@ O Totota foi desenvolvido utilizando HTML e JavaScript, com uma proposta de cria
 
 ## Tecnologias
 
-* HTML5
-* JavaScript
+- HTML5
+- JavaScript
 
+## Acesso
+
+[Visualizar projeto](https://joaodobaile011.github.io/totota/)
 ## Recursos
 
 * Imagens personalizadas
